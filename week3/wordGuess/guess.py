@@ -33,7 +33,7 @@ def checkGuess(let):
             else:
                 incorrect = incorrect + 1
                 print('That letter is not in the word.')
-                print(f'You have {5 - incorrect} wrong guesses left!')
+                print(f'You have {5 - incorrect} chances left!')
                 guesses.append(let)
     else:
         global continueGame
