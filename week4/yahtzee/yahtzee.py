@@ -34,10 +34,14 @@ def rollForYahtzee():
             yahtzee = True
 
     if yahtzee == False:
-        print(rolledDie)
+        for num in rolledDie:
+            print(num, end='  ')
+        print()
         print('Sorry no Yahtzee yet...')
     else:
-        print(rolledDie)
+        for num in rolledDie:
+            print(num, end='  ')
+        print()
         print('YAHTZEE!')
 
 rollForYahtzee()
