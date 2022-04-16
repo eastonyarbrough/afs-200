@@ -1,46 +1,48 @@
 import random
-rolledDie = []
 
 class Die:
-    def __init__(self, sides, currentFace):
+    def __init__(self, sides=6, currentFace=1):
         self.sides = sides
         self.currentFace = currentFace
     
     def roll(self):
-        self.getCurrentFaceValue(random.randint(1, self.sides))
+        self.setCurrentFaceValue(random.randint(1, self.sides))
 
-    def getCurrentFaceValue(self, roll):
+    def setCurrentFaceValue(self, roll):
         self.currentFace = roll
 
-    def showDieFace(self):
+    def getCurrentFaceValue(self):
         return self.currentFace
 
+    def showDieFace(self):
+        print(f'({self.currentFace})', end=' ')
+
 def rollForYahtzee():
-    ctrlList = [1, 2, 3, 4, 5]
     yahtzee = False
+    myDice = []
 
-    for i in ctrlList:
-        globals()[f'die{i}'] = Die(6, 1)
+    for i in range(1, 6):
+        globals()[f'die{i}'] = Die()
+        myDice.append(globals()[f'die{i}'].getCurrentFaceValue())
     
-    for i in ctrlList:
+    for i in range(1, 6):
         globals()[f'die{i}'].roll()
-        rolledDie.append(globals()[f'die{i}'].showDieFace())
 
-    for rolls in rolledDie:
-        if rolledDie[0] != rolls:
+    for i in range(1, 6):
+        if globals()[f'die{1}'].getCurrentFaceValue() != globals()[f'die{i}'].getCurrentFaceValue():
             yahtzee = False
             break
         else:
             yahtzee = True
 
     if yahtzee == False:
-        for num in rolledDie:
-            print(f'({num})', end=' ')
+        for i in range(1, 6):
+            globals()[f'die{i}'].showDieFace()
         print()
         print('Sorry no Yahtzee yet...')
     else:
-        for num in rolledDie:
-            print(f'({num})', end=' ')
+        for i in range(1, 6):
+            globals()[f'die{i}'].showDieFace()
         print()
         print('YAHTZEE!')
 
