@@ -19,11 +19,9 @@ class Die:
 
 def rollForYahtzee():
     yahtzee = False
-    myDice = []
 
     for i in range(1, 6):
         globals()[f'die{i}'] = Die()
-        myDice.append(globals()[f'die{i}'].getCurrentFaceValue())
     
     for i in range(1, 6):
         globals()[f'die{i}'].roll()
