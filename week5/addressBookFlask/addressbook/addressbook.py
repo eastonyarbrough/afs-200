@@ -1,5 +1,3 @@
-import requests
-
 class Contact():
     def __init__(self, firstname, lastname, email, phone, photo):
         self.firstname = firstname
@@ -47,7 +45,7 @@ class AddressBook():
         results = []
         for address in self.addresses:
             
-            if address.getFirstName().lower().startswith(searchStr.lower()) or address.getLastName().lower().startswith(searchStr.lower()):
+            if address.getFirstname().lower().startswith(searchStr.lower()) or address.getLastname().lower().startswith(searchStr.lower()):
                 results.append(address)
                 
         return results

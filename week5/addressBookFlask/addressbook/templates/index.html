@@ -21,8 +21,8 @@
         {% for contact in contacts %}
         
 		<div class="card">
-            <div class="photo"><img src="contact.photo" alt=""></div>
-            <div class="name">${{ contact.firstname }} {{ constact.lastname }}</div>
+            <div class="photo"><img src="{{ contact.photo }}" alt=""></div>
+            <div class="name">{{ contact.firstname }} {{ contact.lastname }}</div>
             <div class="phone">{{ contact.phone }}</div>
             <div class="emal">{{ contact.email }}</div>
         </div> 

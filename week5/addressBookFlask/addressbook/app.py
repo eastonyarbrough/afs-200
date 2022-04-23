@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, request, render_template
 import requests
 import addressbook
 app = Flask(__name__)
@@ -33,13 +33,15 @@ for contact in newContacts['results']:
     newContact = addressbook.Contact(first, last, email, phone, photo)
     myAddressBook.addAddress(newContact)
 
-@app.route("/")
+@app.route("/", methods=['GET'])
 def home():
-    return render_template('index.html')
-
-@app.route("/search")
-def search():
     return render_template('index.html', contacts=myAddressBook.addresses)
+
+@app.route("/search", methods=['POST'])
+def search():
+    searchField = request.form.get('search')
+    results = myAddressBook.findAllMatching(searchField)
+    return render_template('index.html', contacts=results)
 
 if __name__ == "__main__":
     app.run()
