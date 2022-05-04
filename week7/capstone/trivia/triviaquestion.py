@@ -1,12 +1,13 @@
 import random
 
 class TriviaQuestion():
-    def __init__(self, question, category, difficulty, correct_answer, incorrect_answers, id):
+    def __init__(self, question, category, difficulty, correct_answer, incorrect_answers, shuffled_answers, id):
         self.question = question
         self.category = category
         self.difficulty = difficulty
         self.correct_answer = correct_answer
-        self.incorrect_answers = []
+        self.incorrect_answers = incorrect_answers
+        self.shuffled_answers = shuffled_answers
         self.id = id
 
     def getQuestion(self):
@@ -25,11 +26,9 @@ class TriviaQuestion():
         return self.incorrect_answers
 
     def getShuffledAnswers(self):
-        shuffledAnswers = []
-
         for answer in self.incorrect_answers:
-            shuffledAnswers.append(answer)
+            self.shuffled_answers.append(answer)
         
-        shuffledAnswers.append(self.correct_answer)
+        self.shuffled_answers.append(self.correct_answer)
 
-        return random.shuffle(shuffledAnswers)
+        return random.shuffle(self.shuffled_answers)

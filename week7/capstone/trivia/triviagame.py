@@ -36,12 +36,6 @@ class TriviaGame():
 
             count = count + 1
 
-            newTriviaQuestion = triviaquestion.TriviaQuestion(newQuestion, newCategory, newDifficulty, newCorrect_answer, newIncorrect_answers, count)
+            newTriviaQuestion = triviaquestion.TriviaQuestion(newQuestion, newCategory, newDifficulty, newCorrect_answer, newIncorrect_answers, [], count)
+            newTriviaQuestion.getShuffledAnswers()
             self.all_questions.append(newTriviaQuestion)
-
-myGame = TriviaGame()
-myGame.getMultipleChoice(15, 10, 'medium')
-myGameQuestions = myGame.getAllQuestions()
-
-for question in myGameQuestions:
-    print(question.question)

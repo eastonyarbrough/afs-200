@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form action="/score" method="POST">
+            {% for question in questions %}
+            <div>
+                <h3>{{ question.question }}</h3>
+            </div>
+                {% for answer in question.shuffled_answers %}
+                <div>
+                    <input type="radio" name="{{ question.id }}" value="{{ answer }}"></input>
+                    <label for="{{ answer }}">{{ answer }}</label>
+                </div>
+                {% endfor %}
+            {% endfor %}
+            <button type="submit">Score</button>
+        </form>
+    </body>
+</html>

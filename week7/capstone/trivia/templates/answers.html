@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form action="/" method="GET">
+            {% for question in answers %}
+            <div>
+                <h3>{{ question.question }}</h3>
+            </div>
+            <div>
+                <h3>Your answer was...</h3>
+                <h3>{{ userAnswer }}</h3>
+            </div>
+            <div>
+                <h3>The correct answer was...</h3>
+                <h3>{{ question.correct_answer }}</h3>
+            </div>
+            {% endfor %}
+            <button type="submit">More Trivia!</button>
+        </form>
+    </body>
+</html>
