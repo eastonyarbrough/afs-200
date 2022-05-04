@@ -9,27 +9,25 @@ class TriviaGame():
         return self.all_questions
 
     def getMultipleChoice(self, category_id, num_questions, difficulty):
-        def getQuestions():
-            URL = f'https://opentdb.com/api.php?amount={num_questions}&category={category_id}&difficulty={difficulty}&type=multiple'
+        URL = f'https://opentdb.com/api.php?amount={num_questions}&category={category_id}&difficulty={difficulty}&type=multiple'
 
-            try:
-                response = requests.get(URL, timeout=5)
-                response.raise_for_status()
-                response_JSON = response.json()
-                return response_JSON
-            except requests.exceptions.HTTPError as errh:
-                print(errh)
-            except requests.exceptions.ConnectionError as errc:
-                print(errc)
-            except requests.exceptions.Timeout as errt:
-                print(errt)
-            except requests.exceptions.RequestException as err:
-                print(err)
+        try:
+            response = requests.get(URL, timeout=5)
+            response.raise_for_status()
+            response_JSON = response.json()
+            returned_questions = response_JSON
+        except requests.exceptions.HTTPError as errh:
+            print(errh)
+        except requests.exceptions.ConnectionError as errc:
+            print(errc)
+        except requests.exceptions.Timeout as errt:
+            print(errt)
+        except requests.exceptions.RequestException as err:
+            print(err)
 
-        myQuestions = getQuestions()
         count = 0
 
-        for questions in myQuestions['results']:
+        for questions in returned_questions['results']:
             newQuestion = questions['question']
             newCategory = questions['category']
             newDifficulty = questions['difficulty']
