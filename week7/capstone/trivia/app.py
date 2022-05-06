@@ -4,7 +4,7 @@ import triviagame
 app = Flask(__name__)
 
 myGame = triviagame.TriviaGame()
-myGame.getMultipleChoice(15, 1, 'medium')
+myGame.getMultipleChoice(15, 10, 'medium')
 
 @app.route("/", methods=['GET'])
 def home():
@@ -12,5 +12,11 @@ def home():
 
 @app.route("/score", methods=['POST'])
 def score():
-    user_answer = request.form.get('1')
-    return render_template('answers.html', answers=myGame.getAllQuestions(), userAnswer=user_answer)
+    correct = []
+    incorrect = []
+    for question in myGame.getAllQuestions():
+        if (request.form.get(str(question.getID())) == question.getCorrectAnswer()):
+            correct.append(question)
+        else:
+            incorrect.append(question)
+    return render_template('answers.html', answers=myGame.getAllQuestions(), correctQuestions = correct, incorrectQuestions = incorrect)

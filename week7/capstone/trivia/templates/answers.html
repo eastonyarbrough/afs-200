@@ -8,18 +8,15 @@
 </head>
     <body>
         <form action="/" method="GET">
-            {% for question in answers %}
-            <div>
+            <h1 style="text-decoration: underline">Questions you got correct!</h1>
+            {% for question in correctQuestions %}
                 <h3>{{ question.question }}</h3>
-            </div>
-            <div>
-                <h3>Your answer was...</h3>
-                <h3>{{ userAnswer }}</h3>
-            </div>
-            <div>
-                <h3>The correct answer was...</h3>
-                <h3>{{ question.correct_answer }}</h3>
-            </div>
+                <h4>Answer: {{ question.getCorrectAnswer() }}</h4>
+            {% endfor %}
+            <h1 style="text-decoration: underline">Questions you got wrong!</h1>
+            {% for question in incorrectQuestions %}
+                <h3>{{ question.question }}</h3>
+                <h4>Correct Answer: {{ question.getCorrectAnswer() }}</h4>
             {% endfor %}
             <button type="submit">More Trivia!</button>
         </form>

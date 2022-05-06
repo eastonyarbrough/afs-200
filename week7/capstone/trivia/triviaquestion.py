@@ -25,6 +25,9 @@ class TriviaQuestion():
     def getIncorrectAnswers(self):
         return self.incorrect_answers
 
+    def getID (self):
+        return self.id
+
     def getShuffledAnswers(self):
         for answer in self.incorrect_answers:
             self.shuffled_answers.append(answer)
